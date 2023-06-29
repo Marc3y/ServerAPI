@@ -3,6 +3,7 @@ package de.marcey.serverapi.events.impl;
 import de.marcey.serverapi.ServerAPI;
 import de.marcey.serverapi.ServerAPIMain;
 import de.marcey.serverapi.events.*;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -18,7 +19,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class HandleEvents implements Listener {
 
-    private static BukkitTask bukkitRunnable;
+    public static BukkitTask bukkitRunnable;
 
     public void onJoin(PlayerJoinEvent e){
         if(!ServerAPI.getInstance().getEventServer().getHost().equals(e.getPlayer().getUniqueId())) return;
@@ -70,7 +71,11 @@ public class HandleEvents implements Listener {
         bukkitRunnable = new BukkitRunnable(){
             @Override
             public void run() {
-
+                for(Player current : Bukkit.getOnlinePlayers()){
+                    current.sendMessage(ServerAPIMain.getInstance().getPrefix() + " §cDa der Host zu lange weg war, wird der Event-Server nun gestoppt.");
+                }
+                ServerAPI.getInstance().shutdown(false);
+                this.cancel();
             }
         }.runTaskTimer(ServerAPIMain.getInstance(), ServerAPI.getInstance().getSecondsTillServerStops()*20, 60);
     }

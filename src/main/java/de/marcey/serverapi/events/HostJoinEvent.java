@@ -2,6 +2,7 @@ package de.marcey.serverapi.events;
 
 import de.marcey.serverapi.ServerAPI;
 import de.marcey.serverapi.ServerAPIMain;
+import de.marcey.serverapi.events.impl.HandleEvents;
 import de.marcey.serverapi.objects.Host;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -22,6 +23,10 @@ public class HostJoinEvent extends Event {
         if(ServerAPI.getInstance().isShutdown()) {
             player.kickPlayer(ServerAPIMain.getInstance().getPrefix() + " §cDas Event wird gerade heruntergefahren.");
             event.setJoinMessage("");
+            return;
+        }
+        if(HandleEvents.bukkitRunnable != null){
+            HandleEvents.bukkitRunnable.cancel();
         }
     }
 
