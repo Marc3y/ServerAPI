@@ -1,0 +1,7 @@
+name: ServerAPI
+version: '${project.version}'
+main: de.marcey.serverapi.ServerAPIMain
+api-version: 1.19
+commands:
+  eventrang:
+  whitelist:
