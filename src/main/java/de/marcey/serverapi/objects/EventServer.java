@@ -1,5 +1,6 @@
 package de.marcey.serverapi.objects;
 
+import de.marcey.serverapi.ServerAPI;
 import de.marcey.serverapi.ServerAPIMain;
 
 import java.util.ArrayList;
@@ -110,10 +111,10 @@ public class EventServer {
     }
 
     public void delete(){
-        ServerAPIMain.getDataProvider().getData().delete(this);
+        ServerAPIMain.getInstance().dataProvider.getData().delete(this);
     }
 
     public void update(){
-        ServerAPIMain.getDataProvider().getData().set(this);
+        ServerAPIMain.getInstance().dataProvider.getData().set(this);
     }
 }
