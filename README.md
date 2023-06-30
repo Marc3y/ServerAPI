@@ -4,7 +4,7 @@ Die ServerAPI für die Event-Server auf Kenjih.de
 Inizialisierung:
 Es darf nur ein ServerAPI Objekt in dem jeweiligen Projekt existieren. Die Inizialisierung benötigt am meisten Leistung also wird empfohlen, die API direkt beim Server-Start zu inizialisieren.
 ```java
- ServerAPI serverAPI = new ServerAPI(this, "")
+ ServerAPI serverAPI = new ServerAPI(plugin, "Prefix >>")
                 //Optional:
                 .withSecondsTillServerStops(60)
                 .withOpPlayers(true)
